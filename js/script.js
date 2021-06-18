@@ -99,12 +99,13 @@ const icons = [
 ];
 
 icons.forEach((element,index) => {
+    const {name, prefix, family} = element;
+
     document.getElementById('icons').innerHTML += 
     `<div id="icon-${index}">
-        <i class="${element.family} ${element.prefix}${element.name}"></i>
-        <div>${element.name}</div>
-        </div>
-        `
+        <i class="${family} ${prefix}${name}"></i>
+        <div class="uppercase">${name}</div>
+    </div>`
 });
 
 
@@ -130,12 +131,43 @@ const colorIcon = icons.map((element) => {
 const resetHtml = () => {document.getElementById('icons').innerHTML = ''};
 resetHtml();
 
-colorIcon.forEach((element,index) => {
-    document.getElementById('icons').innerHTML += 
-    `<div id="icon-${index}">
-        <i class="${element.family} ${element.prefix}${element.name}" style="color:${element.color};"></i>
-        <div>${element.name}</div>
-    </div>`
-});
+const printColorIcon = (array) => {
+    array.forEach((element,index) => {
+        const {name, prefix, family, color} = element;
+    
+        document.getElementById('icons').innerHTML += 
+        `<div id="icon-${index}">
+            <i class="${family} ${prefix}${name}" style="color:${color};"></i>
+            <div class="uppercase">${name}</div>
+        </div>`
+    });
+};
+
+printColorIcon(colorIcon);
+
+
 
 //TODO Milestone 3 Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+const filterType = document.getElementById("filter-select");
+filterType.addEventListener("change", function() {
+    let iconsShow;
+    switch(filterType.value) {
+        case 'animal':
+            iconsShow = colorIcon.filter((element) => element.type == 'animal');
+            console.log(iconsShow);
+            break;
+        case 'vegetable':
+            iconsShow = colorIcon.filter((element) => element.type == 'vegetable');
+            console.log(iconsShow);
+            break;
+        case 'user':
+            iconsShow = colorIcon.filter((element) => element.type == 'user');
+            console.log(iconsShow);
+            break;
+        default:
+            iconsShow = colorIcon;
+    }
+
+    resetHtml();
+    printColorIcon(iconsShow);
+});
