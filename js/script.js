@@ -98,11 +98,13 @@ const icons = [
     },
 ];
 
+
 //* inizializzo il filtro degli elementi all'inizio del ciclo
 const filterType = document.getElementById("filter-select");
 filterType.value = 'all';
 
 //* stampo tutte le icone all'interno dell'HTML
+//! Tutto questo viene sovrascritto dalle icone colorate stampate successivamente per cui ho fatto la funzione per resettare l'html. Il forEach successivo può anche essere eliminato
 icons.forEach((element,index) => {
     const {name, prefix, family} = element;
 
@@ -127,7 +129,7 @@ const colorIcon = icons.map((element) => {
             color = 'green';
             break;
         case 'user':
-            color = 'grey';
+            color = 'purple';
             break;
     }
     return {...element,color}
@@ -157,6 +159,18 @@ printColorIcon(colorIcon);
 
 //TODO Milestone 3 Creiamo una select con i tipi di icone e usiamola per filtrare le icone
 //* filtro gli elementi da visualizzare nella pagina HTML a seconda di cosa imposta l'utente nel filtro a tendina
+let typeIcons = [];
+colorIcon.forEach((element) => {
+    if(!typeIcons.includes(element.type)){
+        typeIcons.push(element.type);
+        document.getElementById('filter-select').innerHTML += 
+        `<option value=${element.type}>${element.type}</option>`;
+    }
+});
+
+console.log(typeIcons);
+
+
 filterType.addEventListener("change", function() {
     let iconsShow;
     switch(filterType.value) {
