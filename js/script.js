@@ -173,18 +173,26 @@ console.log(typeIcons);
 
 filterType.addEventListener("change", function() {
     let iconsShow;
-    switch(filterType.value) {
-        case 'animal':
-            iconsShow = colorIcon.filter((element) => element.type == 'animal');
-            break;
-        case 'vegetable':
-            iconsShow = colorIcon.filter((element) => element.type == 'vegetable');
-            break;
-        case 'user':
-            iconsShow = colorIcon.filter((element) => element.type == 'user');
-            break;
-        default:
-            iconsShow = colorIcon;
+
+    //* prima soluzione
+    // switch(filterType.value) {
+    //     case 'animal':
+    //         iconsShow = colorIcon.filter((element) => element.type == 'animal');
+    //         break;
+    //     case 'vegetable':
+    //         iconsShow = colorIcon.filter((element) => element.type == 'vegetable');
+    //         break;
+    //     case 'user':
+    //         iconsShow = colorIcon.filter((element) => element.type == 'user');
+    //         break;
+    //     default:
+    //         iconsShow = colorIcon;
+    // }
+    
+    //* soluzione alternativa - più corta
+    iconsShow = colorIcon;
+    if(this.value != 'all'){
+        iconsShow = colorIcon.filter((element) => element.type == this.value);
     }
 
     resetHtml();
