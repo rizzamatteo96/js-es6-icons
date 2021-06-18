@@ -103,10 +103,39 @@ icons.forEach((element,index) => {
     `<div id="icon-${index}">
         <i class="${element.family} ${element.prefix}${element.name}"></i>
         <div>${element.name}</div>
-     </div>
-     `
+        </div>
+        `
 });
 
 
+
 //TODO Milestone 2 Coloriamo le icone per tipo
+const colorIcon = icons.map((element) => {
+    let color;
+    switch (element.type) {
+        case 'animal':
+            color = 'red';
+            break;
+        case 'vegetable':
+            color = 'green';
+            break;
+        case 'user':
+            color = 'grey';
+            break;
+    }
+    return {...element,color}
+});
+// console.log(colorIcon);
+
+const resetHtml = () => {document.getElementById('icons').innerHTML = ''};
+resetHtml();
+
+colorIcon.forEach((element,index) => {
+    document.getElementById('icons').innerHTML += 
+    `<div id="icon-${index}">
+        <i class="${element.family} ${element.prefix}${element.name}" style="color:${element.color};"></i>
+        <div>${element.name}</div>
+    </div>`
+});
+
 //TODO Milestone 3 Creiamo una select con i tipi di icone e usiamola per filtrare le icone
