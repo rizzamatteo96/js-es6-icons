@@ -99,9 +99,12 @@ const icons = [
 ];
 
 icons.forEach((element,index) => {
-    document.getElementById('icon-' + index).innerHTML = 
-    `<i class="${element.family} ${element.prefix}${element.name}"></i>
-     <div class="d-block uppercase">${element.name}</div>`
+    document.getElementById('icons').innerHTML += 
+    `<div id="icon-${index}">
+        <i class="${element.family} ${element.prefix}${element.name}"></i>
+        <div>${element.name}</div>
+     </div>
+     `
 });
 
 
