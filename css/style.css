@@ -8,6 +8,10 @@
     display: block;
 }
 
+.uppercase{
+    text-transform: uppercase;
+}
+
 .main-container{
     padding: 10px;
     height: 100vh;
