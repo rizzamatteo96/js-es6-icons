@@ -176,15 +176,12 @@ filterType.addEventListener("change", function() {
     switch(filterType.value) {
         case 'animal':
             iconsShow = colorIcon.filter((element) => element.type == 'animal');
-            console.log(iconsShow);
             break;
         case 'vegetable':
             iconsShow = colorIcon.filter((element) => element.type == 'vegetable');
-            console.log(iconsShow);
             break;
         case 'user':
             iconsShow = colorIcon.filter((element) => element.type == 'user');
-            console.log(iconsShow);
             break;
         default:
             iconsShow = colorIcon;
